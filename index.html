@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday P'Pink!</title>
+    
+    <!-- Load Tailwind CSS for layout and styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Google Fonts: 'Caveat' for English handwritten style, 'Mali' for cute Thai handwritten style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Mali:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #F3F1ED; /* Light grey/off-white background matching the reference */
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .font-eng-script {
+            font-family: 'Caveat', cursive;
+        }
+
+        .font-thai-script {
+            font-family: 'Mali', cursive;
+        }
+
+        /* Custom frame style imitating the hand-drawn squiggly border from the reference */
+        .photo-frame {
+            position: relative;
+            background: white;
+            padding: 12px;
+            /* Creating an organic, slightly irregular hand-drawn box look using border-radius */
+            border-radius: 2px 255px 3px 25px / 255px 5px 225px 3px;
+            border: 3px solid #3A2E2A;
+            box-shadow: 4px 4px 0px rgba(58, 46, 42, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.02) rotate(-1deg);
+            box-shadow: 8px 8px 0px rgba(58, 46, 42, 0.2);
+        }
+
+        .photo-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border-radius: 4px;
+            /* Optional: Add a very slight vintage warmth to match the vibe */
+            filter: sepia(0.1) contrast(1.05);
+        }
+
+        /* Text color matching the dark brown in the reference */
+        .text-dark-ink {
+            color: #3A2E2A;
+        }
+
+        /* Floating animation for the instruction text */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative flex items-center justify-center font-thai-script text-dark-ink selection:bg-pink-300">
+
+    <!-- MAIN CARD CONTAINER -->
+    <main class="relative w-full max-w-md mx-auto px-6 py-12 flex flex-col items-center justify-center min-h-[90vh]">
+        
+        <!-- Top Right Text (Mimicking the address in reference) -->
+        <div class="absolute top-6 right-6 text-xs font-sans tracking-widest text-gray-500 uppercase">
+            Special Day <br> For Special Person ^^
+        </div>
+
+        <!-- "Happy" Text -->
+        <div class="w-full relative h-20 mb-4 z-10">
+            <h1 class="font-eng-script text-7xl md:text-8xl absolute -top-4 -left-2 transform -rotate-12 text-dark-ink drop-shadow-sm">
+                HappyBirthday
+            </h1>
+        </div>
+
+        <!-- PHOTO SECTION -->
+        <div class="relative w-4/5 max-w-[280px] mx-auto cursor-pointer group" onclick="openSurprise()">
+            
+            <!-- SVG Party Hat (Positioned like the reference) -->
+            <svg class="absolute -top-14 right-2 w-20 h-24 z-20 transform rotate-[15deg] drop-shadow-md transition-transform group-hover:rotate-[25deg] group-hover:scale-110 duration-300" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <!-- Hat Cone -->
+                <polygon points="10,110 90,110 50,25" fill="#FF4DB8" stroke="#3A2E2A" stroke-width="2" stroke-linejoin="round"/>
+                <!-- Bottom Yellow Stripe -->
+                <polygon points="20,90 80,90 85,105 15,105" fill="#FFD700" stroke="#3A2E2A" stroke-width="2" stroke-linejoin="round"/>
+                <!-- Top Yellow Stripe -->
+                <polygon points="34,55 66,55 72,70 28,70" fill="#FFD700" stroke="#3A2E2A" stroke-width="2" stroke-linejoin="round"/>
+                <!-- Pompom -->
+                <circle cx="50" cy="15" r="12" fill="#FFD700" stroke="#3A2E2A" stroke-width="2"/>
+            </svg>
+
+            <!-- Framed Photo -->
+            <div class="photo-frame">
+                <!-- USING THE SPECIFIED IMAGE -->
+                <img src="104.jpg" alt="P'Pink" class="photo-img" onerror="this.src='https://placehold.co/400x500/pink/white?text=183.jpg';">
+            </div>
+            
+            <!-- Click Instruction -->
+            <div class="absolute -bottom-10 left-0 w-full text-center">
+                <span class="inline-block bg-pink-100 text-pink-600 text-xs px-3 py-1 rounded-full animate-float shadow-sm border border-pink-200">
+                    Click
+                </span>
+            </div>
+        </div>
+
+        <!-- "P'Pink is [Age]!" Text (Adjusted from "Mak is 26!") -->
+        <div class="w-full relative h-24 mt-12 z-10">
+            <h1 class="font-eng-script text-6xl md:text-7xl absolute bottom-0 right-0 transform -rotate-6 text-dark-ink drop-shadow-sm text-right leading-none">
+                P'Pinky <br>
+                <span class="text-4xl md:text-5xl ml-8">:)</span>
+            </h1>
+        </div>
+
+    </main>
+
+    <!-- MESSAGE MODAL (Hidden by default) -->
+    <div id="message-modal" class="fixed inset-0 bg-[#F3F1ED]/95 backdrop-blur-sm z-50 flex items-center justify-center p-6 opacity-0 pointer-events-none transition-all duration-500 ease-in-out">
+        
+        <div class="relative bg-white max-w-sm w-full p-8 rounded-3xl shadow-2xl border-2 border-dark-ink transform scale-90 transition-transform duration-500 ease-out" id="modal-content">
+            
+            <!-- Close Button -->
+            <button onclick="closeSurprise()" class="absolute -top-4 -right-4 w-10 h-10 bg-[#FF4DB8] text-white rounded-full border-2 border-dark-ink font-bold text-xl flex items-center justify-center hover:bg-pink-600 transition-colors shadow-md z-10">
+                &times;
+            </button>
+
+            <!-- Decorative Tape -->
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-20 h-6 bg-yellow-200/60 rotate-2"></div>
+
+            <!-- The Heartfelt Message -->
+            <div class="space-y-4 text-base md:text-lg leading-relaxed text-gray-800">
+                <p>สุขสันต์วันเกิดนะคั้บพี่พิงค์กี้ </p>
+                
+                <p>อันนี้แอ๊นท์ตั้งใจเขียนเองก็ เราดีใจมากๆเลย ที่ได้เจอเธอนะ โชคดีที่เจอเธอ ที่ผ่านมา เรามีความสุขมากๆเลย</p>
+                
+                <p>ขอให้เราอยู่ในวันเกิดแกไปอีกทุกๆรอบเลยนะ ถึงแม้วันเกิดปีนี้เราจะไม่ได้ให้อะไรแกเลย แต่ครั้งหน้าๆ เราหวังว่าจะได้อยู่ดูแกเป่าเค้กกับตาเราเองเลยนะอ้วน </p>
+                
+                <p>ขอบคุณนะที่แกเข้ามาในชีวิตชั้น </p>
+            </div>
+
+            <!-- Signature -->
+            <div class="mt-8 text-right font-semibold text-lg flex justify-end items-center gap-2">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Canvas for Confetti -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const modal = document.getElementById('message-modal');
+        const modalContent = document.getElementById('modal-content');
+        let confettiInterval;
+
+        // Function to open the message and trigger confetti
+        function openSurprise() {
+            // Show modal
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100', 'pointer-events-auto');
+            
+            // Pop-in animation for content
+            modalContent.classList.remove('scale-90');
+            modalContent.classList.add('scale-100');
+
+            // Start Confetti
+            startConfetti();
+        }
+
+        // Function to close the message
+        function closeSurprise() {
+            // Hide modal
+            modal.classList.remove('opacity-100', 'pointer-events-auto');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            
+            // Pop-out animation for content
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-90');
+
+            // Stop Confetti
+            stopConfetti();
+        }
+
+        /* --- SIMPLE CONFETTI GENERATOR SYSTEM --- */
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        const colors = ['#FF4DB8', '#FFD700', '#4ADE80', '#60A5FA', '#A78BFA'];
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 10 + 5;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.speedY = Math.random() * 3 + 2;
+                this.speedX = Math.random() * 2 - 1;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 5 - 2.5;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                // Reset to top if it falls off screen
+                if (this.y > canvas.height) {
+                    this.y = -this.size;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function initConfetti() {
+            particles = [];
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        let animationId;
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            animationId = requestAnimationFrame(animateConfetti);
+        }
+
+        function startConfetti() {
+            initConfetti();
+            animateConfetti();
+        }
+
+        function stopConfetti() {
+            cancelAnimationFrame(animationId);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = [];
+        }
+    </script>
+</body>
+</html>
